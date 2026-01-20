@@ -1,0 +1,276 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+:root {
+  --terminal-bg: #0d0d0d;
+  --terminal-text: #00ff00;
+  --terminal-accent: #00ffff;
+  --terminal-error: #ff0000;
+  --terminal-border: #333;
+  --terminal-cursor-blink: 0.75s step-end infinite;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.terminal-container {
+  width: 100%;
+  max-width: 900px;
+  border: 1px solid var(--terminal-border);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+  background-color: var(--terminal-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-header {
+  background-color: #222;
+  color: #ccc;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--terminal-border);
+  position: relative;
+  user-select: none;
+}
+
+.terminal-title {
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.terminal-buttons span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.terminal-buttons span:hover {
+  opacity: 1;
+}
+
+.terminal-buttons .close {
+  background-color: #ff5f56;
+}
+
+.terminal-buttons .minimize {
+  background-color: #ffbd2e;
+}
+
+.terminal-buttons .maximize {
+  background-color: #27c93f;
+}
+
+.terminal-body {
+  padding: 20px;
+  overflow-y: auto;
+  height: 60vh;
+  max-height: 500px;
+  background-color: var(--terminal-bg);
+  background-image: linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px);
+  background-size: 100% 30px;
+}
+
+.boot-screen {
+  margin-bottom: 20px;
+  animation: blink-cursor 0.75s step-end infinite;
+}
+
+.boot-text {
+  white-space: pre-wrap;
+  color: var(--terminal-accent);
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.section {
+  margin-bottom: 25px;
+}
+
+.command-prompt {
+  display: flex;
+  align-items: center;
+  color: var(--terminal-accent);
+  margin-bottom: 10px;
+  text-shadow: 0 0 3px rgba(0, 255, 255, 0.5);
+}
+
+.command-prompt span {
+  color: var(--terminal-text);
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.output-text {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.log-entry {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.log-entry .timestamp {
+  color: #aaa;
+  margin-right: 10px;
+}
+
+.log-entry .log-level {
+  color: var(--terminal-accent);
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.log-entry .details {
+  margin-left: 30px;
+  display: block;
+  color: #eee;
+}
+
+.project-list {
+  margin-top: 10px;
+}
+
+.project-item {
+  margin-bottom: 15px;
+}
+
+.project-title {
+  color: var(--terminal-accent);
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.project-title:hover {
+  color: var(--terminal-text);
+}
+
+.project-details {
+  margin-left: 30px;
+  color: #ccc;
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+.command-success {
+  color: #00ff00;
+  font-weight: bold;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.command-error {
+  color: var(--terminal-error);
+  font-weight: bold;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.footer-section {
+  margin-top: 20px;
+  border-top: 1px solid var(--terminal-border);
+  padding-top: 15px;
+}
+
+.footer-section .command-prompt {
+  margin-bottom: 0;
+}
+
+.footer-section .command-prompt span {
+  color: #555;
+}
+
+/* Blinking Cursor */
+.blink {
+  animation: blink-cursor var(--terminal-cursor-blink);
+}
+
+@keyframes blink-cursor {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  .terminal-body {
+    height: 70vh;
+    max-height: 400px;
+    padding: 15px;
+  }
+  .terminal-title {
+    font-size: 12px;
+  }
+  .command-prompt {
+    font-size: 13px;
+  }
+  .output-text, .log-entry .details, .project-details {
+    font-size: 12px;
+  }
+  .log-entry .details, .project-details {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminal-header {
+    padding: 6px 10px;
+  }
+  .terminal-title {
+    font-size: 11px;
+  }
+  .terminal-buttons span {
+    width: 10px;
+    height: 10px;
+  }
+  .terminal-body {
+    padding: 10px;
+    font-size: 12px;
+  }
+  .command-prompt {
+    font-size: 12px;
+  }
+  .output-text, .log-entry .details, .project-details {
+    font-size: 11px;
+  }
+  .log-entry .details, .project-details {
+    margin-left: 15px;
+  }
+}
